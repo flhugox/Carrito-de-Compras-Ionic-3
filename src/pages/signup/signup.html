@@ -1,0 +1,185 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <ion-list>
+    
+     <ion-item-divider color="dark">
+               Datos Personales
+     </ion-item-divider>
+     <ion-item>
+        <ion-label>
+           Nombre
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="newUser.first_name"></ion-input>
+     </ion-item>
+
+
+     <ion-item>
+      <ion-label>
+        Apellido 
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="newUser.last_name"></ion-input>
+   </ion-item>
+
+
+   <ion-item>
+    <ion-label>
+      Email
+    </ion-label>
+    <ion-input type="email" [(ngModel)]="newUser.email"></ion-input>
+ </ion-item>
+
+
+ <ion-item>
+  <ion-label>Usuario  </ion-label>
+  <ion-input type="text" [(ngModel)]="newUser.username"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>
+    Password
+  </ion-label>
+  <ion-input type="password" [(ngModel)]="newUser.password"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>
+    Confirmar Password
+  </ion-label>
+  <ion-input type="password" [(ngModel)]="newUser.confirm_password"></ion-input>
+</ion-item>
+
+ 
+<ion-item-divider color="dark">
+ Direccion de Envio
+</ion-item-divider>
+
+
+<ion-item>
+  <ion-label>
+    Direccion 1
+  </ion-label>
+ <ion-textarea type="text" maxlength="80" [(ngModel)]="newUser.billing_address.address_1"></ion-textarea>
+</ion-item>
+
+
+<ion-item>
+  <ion-label>
+    Direccion 2
+  </ion-label>
+ <ion-textarea type="text" maxlength="80" [(ngModel)]="newUser.billing_address.address_2"></ion-textarea>
+</ion-item>
+
+
+<ion-item>
+  <ion-label>
+    Pais
+  </ion-label>
+  <ion-select [(ngModel)]="newUser.billing_address.country">
+      <ion-option value="Mexico" selected="true">Mexico</ion-option>
+  </ion-select>
+</ion-item>
+
+
+<ion-item>
+  <ion-label>
+    Estados
+  </ion-label>
+  <ion-select [(ngModel)]="newUser.billing_address.state">
+     
+          <ion-option value="1">Aguascalientes</ion-option>
+
+          <ion-option value="2">Baja California</ion-option>
+
+          <ion-option value="3">Baja California Sur</ion-option>
+
+          <ion-option value="4">Campeche</ion-option>
+
+          <ion-option value="5">Coahuila de Zaragoza</ion-option>
+
+          <ion-option value="6">Colima</ion-option>
+
+          <ion-option value="7">Chiapas</ion-option>
+
+          <ion-option value="8">Chihuahua</ion-option>
+
+          <ion-option value="9">Distrito Federal</ion-option>
+
+          <ion-option value="10">Durango</ion-option>
+
+          <ion-option value="11">Guanajuato</ion-option>
+
+          <ion-option value="12">Guerrero</ion-option>
+
+          <ion-option value="13">Hidalgo</ion-option>
+
+          <ion-option value="14">Jalisco</ion-option>
+
+          <ion-option value="15">México</ion-option>
+
+          <ion-option value="16">Michoacán de Ocampo</ion-option>
+
+          <ion-option value="17">Morelos</ion-option>
+
+          <ion-option value="18">Nayarit</ion-option>
+
+          <ion-option value="19">Nuevo León</ion-option>
+
+          <ion-option value="20">Oaxaca</ion-option>
+
+          <ion-option value="21">Puebla</ion-option>
+
+          <ion-option value="22">Querétaro</ion-option>
+
+          <ion-option value="23">Quintana Roo</ion-option>
+
+          <ion-option value="24">San Luis Potosí</ion-option>
+
+          <ion-option value="25">Sinaloa</ion-option>
+
+          <ion-option value="26">Sonora</ion-option>
+
+          <ion-option value="27">Tabasco</ion-option>
+
+          <ion-option value="28">Tamaulipas</ion-option>
+
+          <ion-option value="29">Tlaxcala</ion-option>
+
+          <ion-option value="30">Veracruz de Ignacio de la Llave</ion-option>
+
+          <ion-option value="31">Yucatán</ion-option>
+
+          <ion-option value="32">Zacatecas</ion-option>
+  </ion-select>
+</ion-item>
+
+      <ion-item>
+        <ion-label>
+          Ciudad
+        </ion-label>
+        <ion-input type="text" [(ngModel)]=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>
+            Codigo Postal
+          </ion-label>
+          <ion-input type="text" [(ngModel)]=""></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+              Telefono
+            </ion-label>
+            <ion-input type="text" [(ngModel)]=""></ion-input>
+          </ion-item>
+
+
+  </ion-list>
+</ion-content>

@@ -18,6 +18,7 @@ export class ProductDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage:Storage,public toastCtrl:ToastController,public ModalCtrl:ModalController) {
     this.product=this.navParams.get("product");
     console.log(this.product);
+    
     this.WooCommerce=WC({
       url:"http://localhost/project",
       consumerKey:"ck_97206fa9aac8d9579c1b73f5895a2f084bca65f5",
@@ -64,6 +65,7 @@ export class ProductDetailsPage {
 
             }
 
+           
             if(added==0){
               data.push({
                 "product":product,
