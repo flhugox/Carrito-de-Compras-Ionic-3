@@ -34,7 +34,7 @@
     <ion-label>
       Email
     </ion-label>
-    <ion-input type="email" [(ngModel)]="newUser.email"></ion-input>
+    <ion-input type="email" [(ngModel)]="newUser.email" (blur)="checkEmail()"></ion-input>
  </ion-item>
 
 
@@ -58,7 +58,7 @@
 
  
 <ion-item-divider color="dark">
- Direccion de Envio
+ Direccion de Facturacion
 </ion-item-divider>
 
 
@@ -78,7 +78,7 @@
 </ion-item>
 
 
-<ion-item>
+<ion-item >
   <ion-label>
     Pais
   </ion-label>
@@ -88,15 +88,15 @@
 </ion-item>
 
 
-<ion-item>
+<ion-item >
   <ion-label>
     Estados
   </ion-label>
   <ion-select [(ngModel)]="newUser.billing_address.state">
      
-          <ion-option value="1">Aguascalientes</ion-option>
+          <ion-option value="Aguascalientes">Aguascalientes</ion-option>
 
-          <ion-option value="2">Baja California</ion-option>
+          <ion-option value="Baja California">Baja California</ion-option>
 
           <ion-option value="3">Baja California Sur</ion-option>
 
@@ -158,28 +158,167 @@
 
           <ion-option value="32">Zacatecas</ion-option>
   </ion-select>
-</ion-item>
+</ion-item >
 
-      <ion-item>
+      <ion-item >
         <ion-label>
           Ciudad
         </ion-label>
-        <ion-input type="text" [(ngModel)]=""></ion-input>
+        <ion-input type="text" [(ngModel)]="newUser.billing_address.city"></ion-input>
       </ion-item>
 
       <ion-item>
           <ion-label>
             Codigo Postal
           </ion-label>
-          <ion-input type="text" [(ngModel)]=""></ion-input>
+          <ion-input type="text" [(ngModel)]="newUser.billing_address.postcode"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>
               Telefono
             </ion-label>
-            <ion-input type="text" [(ngModel)]=""></ion-input>
+            <ion-input type="text" [(ngModel)]="newUser.billing_address.phone"></ion-input>
           </ion-item>
 
 
+
+          <ion-item-divider color="dark">
+            Direccion de Envio
+           </ion-item-divider>
+
+           <ion-item>
+            <ion-label>
+             Usar la misma Direccion
+            </ion-label>
+           <ion-checkbox (ionChange)="setbillingToShipping()"  ></ion-checkbox>
+          </ion-item>
+          
+           
+           <ion-item *ngIf="!billing_shipping_same">
+             <ion-label >
+               Direccion 1
+             </ion-label>
+            <ion-textarea type="text" maxlength="80" [(ngModel)]="newUser.shipping_address.address_1"></ion-textarea>
+           </ion-item>
+           
+           
+           <ion-item *ngIf="!billing_shipping_same">
+             <ion-label>
+               Direccion 2
+             </ion-label>
+            <ion-textarea type="text" maxlength="80" [(ngModel)]="newUser.shipping_address.address_2"></ion-textarea>
+           </ion-item>
+           
+           
+           <ion-item *ngIf="!billing_shipping_same">
+             <ion-label>
+               Pais
+             </ion-label>
+             <ion-select [(ngModel)]="newUser.shipping_address.country">
+                 <ion-option value="Mexico" selected="true">Mexico</ion-option>
+             </ion-select>
+           </ion-item>
+           
+           
+           <ion-item  *ngIf="!billing_shipping_same">
+             <ion-label>
+               Estados
+             </ion-label>
+             <ion-select [(ngModel)]="newUser.shipping_address.state">
+                
+                     <ion-option value="Aguascalientes">Aguascalientes</ion-option>
+           
+                     <ion-option value="Baja California">Baja California</ion-option>
+           
+                     <ion-option value="3">Baja California Sur</ion-option>
+           
+                     <ion-option value="4">Campeche</ion-option>
+           
+                     <ion-option value="5">Coahuila de Zaragoza</ion-option>
+           
+                     <ion-option value="6">Colima</ion-option>
+           
+                     <ion-option value="7">Chiapas</ion-option>
+           
+                     <ion-option value="8">Chihuahua</ion-option>
+           
+                     <ion-option value="9">Distrito Federal</ion-option>
+           
+                     <ion-option value="10">Durango</ion-option>
+           
+                     <ion-option value="11">Guanajuato</ion-option>
+           
+                     <ion-option value="12">Guerrero</ion-option>
+           
+                     <ion-option value="13">Hidalgo</ion-option>
+           
+                     <ion-option value="14">Jalisco</ion-option>
+           
+                     <ion-option value="15">México</ion-option>
+           
+                     <ion-option value="16">Michoacán de Ocampo</ion-option>
+           
+                     <ion-option value="17">Morelos</ion-option>
+           
+                     <ion-option value="18">Nayarit</ion-option>
+           
+                     <ion-option value="19">Nuevo León</ion-option>
+           
+                     <ion-option value="20">Oaxaca</ion-option>
+           
+                     <ion-option value="21">Puebla</ion-option>
+           
+                     <ion-option value="22">Querétaro</ion-option>
+           
+                     <ion-option value="23">Quintana Roo</ion-option>
+           
+                     <ion-option value="24">San Luis Potosí</ion-option>
+           
+                     <ion-option value="25">Sinaloa</ion-option>
+           
+                     <ion-option value="26">Sonora</ion-option>
+           
+                     <ion-option value="27">Tabasco</ion-option>
+           
+                     <ion-option value="28">Tamaulipas</ion-option>
+           
+                     <ion-option value="29">Tlaxcala</ion-option>
+           
+                     <ion-option value="30">Veracruz de Ignacio de la Llave</ion-option>
+           
+                     <ion-option value="31">Yucatán</ion-option>
+           
+                     <ion-option value="32">Zacatecas</ion-option>
+             </ion-select>
+           </ion-item >
+           
+                 <ion-item  *ngIf="!billing_shipping_same">
+                   <ion-label>
+                     Ciudad
+                   </ion-label>
+                   <ion-input type="text" [(ngModel)]="newUser.shipping_address.city"></ion-input>
+                 </ion-item>
+           
+                 <ion-item *ngIf="!billing_shipping_same">
+                     <ion-label>
+                       Codigo Postal
+                     </ion-label>
+                     <ion-input type="text" [(ngModel)]="newUser.shipping_address.postcode"></ion-input>
+                   </ion-item>
+                   <ion-item *ngIf="!billing_shipping_same">
+                       <ion-label >
+                         Telefono
+                       </ion-label>
+                       <ion-input type="text" [(ngModel)]="newUser.shipping_address.phone"></ion-input>
+                     </ion-item>
+           
+
+                     
+
   </ion-list>
 </ion-content>
+
+
+<ion-footer>
+  <button ion-button block color="danger" (click)="signup()">Registrarse</button>
+</ion-footer>
