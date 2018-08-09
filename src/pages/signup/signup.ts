@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams,ToastController } from 'ionic-angular';
+import {  NavController, NavParams,ToastController ,AlertController } from 'ionic-angular';
 import * as WC from 'woocommerce-api';
 
 @Component({
@@ -12,14 +12,16 @@ export class SignupPage {
   newUser: any ={};
   billing_shipping_same:boolean;
   Woocommerce:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController,public alertCtrl: AlertController) {
     this.newUser.billing_address={};
     this.newUser.shipping_address={};
     this.billing_shipping_same=false;
+  
     this.Woocommerce=WC({
-      url:"http://localhost/project",
+      url:"http://localhost/project/",
       consumerKey:"ck_97206fa9aac8d9579c1b73f5895a2f084bca65f5",
-      consumerSecret:"cs_7592a43a30c7dfa468b6907d1e08ac77c7e39e08"
+    consumerSecret:"cs_7592a43a30c7dfa468b6907d1e08ac77c7e39e08",
+      queryStringAuth: true
   });
 
   }
@@ -99,7 +101,7 @@ export class SignupPage {
         "postcode": this.newUser.billing_address.postcode,
         "country": this.newUser.billing_address.country,
         "email": this.newUser.email,
-        "phone": this.newUser.billing_address.phone,
+        "phone": this.newUser.billing_address.phone
       },
       "shipping_address": {
         "first_name": this.newUser.first_name,
@@ -110,19 +112,41 @@ export class SignupPage {
         "city": this.newUser.shipping_address.city,
         "state": this.newUser.shipping_address.state,
         "postcode": this.newUser.shipping_address.postcode,
-        "country": this.newUser.shipping_address.country,
+        "country": this.newUser.shipping_address.country
       }
     }
 
 
-    
+
+ 
     if(this.billing_shipping_same){
       this.newUser.shipping_address = this.newUser.shipping_address;
     }
 
-    this.Woocommerce.postAsync('customers', customerData.customer).then( (data) => {
- 
+    this.Woocommerce.postAsync('customers', customerData).then( (data) => {
+
+      let response = (JSON.parse(data.body));
+
+      if(response.customer){
+        this.alertCtrl.create({
+          title: "Account Created",
+          message: "Your account has been created successfully! Please login to proceed.",
+          buttons: [{
+            text: "Login",
+            handler: ()=> {
+              //TODO
+            }
+          }]
+        }).present();
+      } else if(response.errors){
+        this.toastCtrl.create({
+          message: response.errors[0].message,
+          showCloseButton: true
+        }).present();
+      }
+
     })
+
   }
  
 }

@@ -6,6 +6,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
 
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +14,7 @@ import { SignupPage } from '../pages/signup/signup';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SignupPage;//MenuPage;
+  rootPage: any = MenuPage;
 
 
 
