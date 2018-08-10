@@ -15,6 +15,7 @@ import {CartPage} from '../pages/cart/cart';
 import { IonicStorageModule } from '@ionic/storage';
 import {SignupPage} from '../pages/signup/signup';
 import {LoginPage} from '../pages/login/login';
+import {CheckoutPage} from '../pages/checkout/checkout';
 import {HttpModule}  from '@angular/http';
 
 @NgModule({
@@ -26,7 +27,8 @@ import {HttpModule}  from '@angular/http';
     ProductDetailsPage,
     CartPage,
     SignupPage,
-    LoginPage
+    LoginPage,
+    CheckoutPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import {HttpModule}  from '@angular/http';
     ProductDetailsPage,
     CartPage,
     SignupPage,
-    LoginPage
+    LoginPage,
+    CheckoutPage
   ],
   providers: [
     StatusBar,
