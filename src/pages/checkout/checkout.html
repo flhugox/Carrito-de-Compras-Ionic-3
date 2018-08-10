@@ -1,18 +1,151 @@
-<!--
-  Generated template for the CheckoutPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>checkout</ion-title>
+    <ion-title>Pago</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <ion-list>
+      <ion-item-divider color="danger">Datos Generales</ion-item-divider>
+      <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-input type="text"  [(ngModel)]="newOrder.customer.billing_address.first_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Apellidos</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.customer.billing_address.last_name" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email </ion-label>
+        
+        <ion-input readonly type="email"  [(ngModel)]="newOrder.customer.email"  ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Usuario</ion-label>
+        <ion-input readonly type="text"  [(ngModel)]="newOrder.customer.username"></ion-input>
+      </ion-item>
+
+      <ion-item-divider color="danger">Datos De Facturacion</ion-item-divider>
+
+      <ion-item>
+        <ion-label>Direccion 1</ion-label>
+        <ion-textarea type="text" maxlength="80"  [(ngModel)]="newOrder.customer.billing_address.address_1" ></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Direccion 2</ion-label>
+        <ion-textarea type="text" maxlength="80"   [(ngModel)]="newOrder.customer.billing_address.address_2"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ciudad</ion-label>
+        <ion-select   [(ngModel)]="newOrder.customer.billing_address.country">
+          <ion-option value="MX" selected="true" >Mexico</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Estado</ion-label>
+        <ion-select  [(ngModel)]="newOrder.customer.billing_address.state">
+          <ion-option value="JA">Jalisco</ion-option>
+          <ion-option value="DF">DF</ion-option>
+          <ion-option value="Sinaloa">Sinaloa</ion-option>
+
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ciudad</ion-label>
+        <ion-input type="text" [(ngModel)]="newOrder.customer.billing_address.city"></ion-input>        
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Codigo Postal</ion-label>
+        <ion-input type="number" clearInput [(ngModel)]="newOrder.customer.billing_address.postcode"> </ion-input>        
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefono</ion-label>
+        <ion-input type="tel" clearInput  [(ngModel)]="newOrder.customer.billing_address.phone"></ion-input>        
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Usar mismos datos de Envio</ion-label>
+        <ion-checkbox (ionChange)="setBillingToShipping()"></ion-checkbox>
+      </ion-item>
+
+      <ion-item-divider color="danger" *ngIf="!billing_shipping_same">Datos De Envio</ion-item-divider>
+      
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Nombre(s)</ion-label>
+        <ion-input type="text"   [(ngModel)]="newOrder.customer.shipping_address.first_name"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Apellidos</ion-label>
+        <ion-input type="text"   [(ngModel)]="newOrder.customer.shipping_address.last_name"></ion-input>
+      </ion-item>
+      
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Direccion 1</ion-label>
+        <ion-textarea type="text" maxlength="80"  [(ngModel)]="newOrder.customer.shipping_address.address_1"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Direccion 2</ion-label>
+        <ion-textarea type="text" maxlength="80"  [(ngModel)]="newOrder.customer.shipping_address.address_2"></ion-textarea>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Pais</ion-label>
+        <ion-select   [(ngModel)]="newOrder.customer.shipping_address.country">
+          <ion-option value="MX" selected="true">Mexico</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Estado</ion-label>
+        <ion-select [(ngModel)]="newOrder.customer.shipping_address.state">
+            <ion-option value="JA">Jalisco</ion-option>
+            <ion-option value="DF">DF</ion-option>
+            <ion-option value="Sinaloa">Sinaloa</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Ciudad</ion-label>
+        <ion-input type="text"  [(ngModel)]="newOrder.customer.shipping_address.city"></ion-input>        
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Codigo Postal</ion-label>
+        <ion-input type="number" clearInput [(ngModel)]="newOrder.customer.shipping_address.postcode" ></ion-input>        
+      </ion-item>
+
+      <ion-item *ngIf="!billing_shipping_same">
+        <ion-label>Telefono</ion-label>
+        <ion-input type="tel" clearInput [(ngModel)]="newOrder.customer.shipping_address.phone"></ion-input>        
+      </ion-item>
+
+      <ion-item-divider color="danger">Metodo De Pago</ion-item-divider>
+
+      <ion-item>
+        <ion-label>Metodo De Pago</ion-label>
+        <ion-select [(ngModel)]="paymentMethod">
+          <ion-option *ngFor="let p of paymentMethods" value="{{p.method_id}}">{{ p.method_title }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <button ion-button block color="danger" (click)="placeOrder()">Pagar</button>
+</ion-footer>

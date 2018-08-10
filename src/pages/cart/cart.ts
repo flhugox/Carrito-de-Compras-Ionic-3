@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams ,ViewController,ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {CheckoutPage} from '../checkout/checkout';
-import {LoginPage} from '../Login/Login';
+import { CheckoutPage} from '../checkout/checkout';
+import {LoginPage} from '../login/login';
+
  
+
 
 @Component({
   selector: 'page-cart',
@@ -82,9 +84,11 @@ export class CartPage {
       if(data != null){
         this.navCtrl.push(CheckoutPage);
       } else {
-        this.navCtrl.push('LoginPage', {next: 'CheckoutPage'})
+        this.navCtrl.push(LoginPage);
+
       }
-    })
+
+    });
 
 
 
