@@ -10,22 +10,52 @@
       <img src="./assets/images/banner2.png" alt="">
       <div class="card-title">WOOIONIC</div>
       <div class="card-subtitle">Siempre Innovando</div>
-
     </ion-card>
+   
+
     <ion-list>
+
       <ion-item *ngFor="let category of categories" text-wrap (click)="openCategoryPage(category)" menuClose>
         <ion-icon [name]="category.icon" item-left large ></ion-icon>
                <h2>{{category.name}}</h2>
 
                <p>{{category.description}}</p>
       </ion-item>
+<ion-item-divider color="primary">Cuenta</ion-item-divider>
 
-
-      <ion-item (click)="openPage('singup');" menuClose>
+      <ion-item (click)="openPage('singup');" menuClose *ngIf="!loggedIn" >
         <ion-icon name="md-clipboard" item-left large ></ion-icon>
               <h2>Sing Up</h2>
               <p>For a new account</p> 
       </ion-item>
+
+
+
+      <ion-item (click)="openPage('login');" menuClose *ngIf="!loggedIn">
+          <ion-icon name="log-in" item-left large ></ion-icon>
+                <h2>Login</h2>
+                <p>Usar tu email y contraseña</p> 
+        </ion-item>
+
+
+        
+      <ion-item *ngIf="loggedIn" menuClose>
+          <ion-icon name="contact" item-left large></ion-icon>
+          <h2>{{ (this.user.firstname == '' ? this.user.username : this.user.firstname) || "" }}</h2>
+          <p>Bienvenido</p>
+        </ion-item>
+  
+        <ion-item *ngIf="loggedIn" (click)="openPage('cart')" menuClose>
+          <ion-icon name="cart" item-left large></ion-icon>
+          <h2>Tu Carrito </h2>
+          <p>ver Articulos</p>
+        </ion-item>
+  
+        <ion-item *ngIf="loggedIn" (click)="openPage('logout')" menuClose>
+          <ion-icon name="log-out" item-left large></ion-icon>
+          <h2>Cerrar Seccion</h2>
+          <p></p>
+        </ion-item>
 
 
       

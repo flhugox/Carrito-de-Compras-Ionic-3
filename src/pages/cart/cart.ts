@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams ,ViewController} from 'ionic-angular';
+import {  NavController, NavParams ,ViewController,ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
  
 
@@ -12,24 +12,40 @@ export class CartPage {
   cartItems:any[]=[];
   total:any;
   showEmptyCartMessage:boolean=false;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage, public viewCtrl:ViewController) {
-  this.total=0.0;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage, public viewCtrl:ViewController,public toastController: ToastController) {
+     
+
+    this.total = 0.0;
+    
     this.storage.ready().then(()=>{
 
-           this.storage.get("cart").then((data)=>{
-                    this.cartItems=data;
-                    console.log(data);
-                    if(this.cartItems.length>0){
-                       this.cartItems.forEach((item,index)=>{
-                           this.total=this.total + (item.product.price*item.qty);
-                            
-                       })
+      this.storage.get("cart").then( (data)=>{
+        this.cartItems = data;
+      
+        if(this.cartItems != null){
 
-                    }else{
-                        this.showEmptyCartMessage=true;
-                    }
-           })
-    });
+          this.cartItems.forEach( (item, index)=> {
+
+            if(item.variation){
+              this.total = this.total + (parseFloat(item.variation.price) * item.qty);
+            } else {
+              this.total = this.total + (item.product.price * item.qty)
+            }
+
+          })
+
+        } else {
+
+          this.showEmptyCartMessage = true;
+
+        }
+
+
+      })
+
+    })
+
+
   }
 
   
@@ -60,6 +76,16 @@ export class CartPage {
   checkout(){
 
 
+    this.storage.get("userLoginInfo").then( (data) => {
+      if(data != null){
+        this.navCtrl.push('Checkout');
+      } else {
+        this.navCtrl.push('Login', {next: 'Checkout'})
+      }
+    })
+
+
+    
   }
 
 }

@@ -1,9 +1,4 @@
-<!--
-  Generated template for the LoginPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -13,6 +8,45 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
+<h1>VicSoft</h1>
+  <ion-card>
+      
+    <ion-card-header>
+      Login
+    </ion-card-header>
+      <ion-card-content>
+         <ion-list no-lines>
+             <ion-item>
+                <ion-label floating> Usuario</ion-label>
+                <ion-input type="text" [(ngModel)]="username"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label floating> Contraseña</ion-label>
+                  <ion-input type="password" [(ngModel)]="password"></ion-input>
+             </ion-item>
+
+             <ion-item>
+                <p>Olvidaste Tu Contraseña<a>Click Aqui</a></p>
+                
+           </ion-item>
+           <button ion-button color="danger" block outline (click)="login()">Login</button>
+           <button ion-button color="primary" clear block outline>Sin Cuenta? Registrate</button>
+         </ion-list>
+
+         <b>O</b>
+
+         <button ion-button color="primary" ion-left block>
+               <ion-icon name="logo-facebook">
+                 <div>
+                   login con facebook
+                 </div>
+               </ion-icon>
+         </button>
+
+      </ion-card-content>
+  </ion-card>
+
 
 </ion-content>
