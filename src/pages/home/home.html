@@ -20,10 +20,37 @@
     <ion-row>
       <ion-slides  #productSlides >
          <ion-slide *ngFor="let product of products"  >
+           
               <ion-card no-padding>
-                  <img [src]="product.featured_src" alt="">
-                  <h3>{{product.title}}</h3>
-                  <p center padding [innerHTML]="product.description"></p>
+                    <ion-item>
+                     
+                      <h3 center padding [innerHTML]="product.title.substr(0,100)+'...'"></h3>
+                      
+                    </ion-item>
+                    <img [src]="product.featured_src" alt="">
+                    <ion-card-content style="font-size: 10px;">
+                        <p  center padding [innerHTML]="product.description.substr(0,200)+'...'"></p>
+                      </ion-card-content>
+                      <ion-row>
+                          <ion-col>
+                            <button ion-button icon-start clear small>
+                              <ion-icon name="expand"></ion-icon>
+                              <div>ver detalles</div>
+                            </button>
+                          </ion-col>
+                          <ion-col>
+                            <button ion-button icon-start clear small>
+                              <ion-icon name="pricetag"></ion-icon>
+                              <div> $ {{product.regular_price}}</div>
+                            </button>
+                          </ion-col>
+                          <ion-col center text-center>
+                            <ion-note>
+                            
+                            </ion-note>
+                          </ion-col>
+                        </ion-row>
+                  
               </ion-card>
 
          </ion-slide>
